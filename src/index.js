@@ -66,7 +66,13 @@ const createElement = async (requestURL) => {
         divImg.style.backgroundImage = `url(${el.image.original})`;
         const h1 = document.createElement('h1');
         h1.classList.add('cardName');
-        h1.textContent = el.name;
+        h1.textContent = `S${el.season}E${el.number} ${el.name}`;
+        const details = document.createElement('p');
+        details.classList.add('cardDetails');
+        details.innerHTML = `Plot Summary: <br>${el.summary}`;
+        const h2 = document.createElement('h2');
+        h2.classList.add('cardRuntime');
+        h2.textContent = `Runtime: ${el.runtime} mins Rating: ${el.rating.average}`;
 
         const starContainer = document.createElement('div');
         starContainer.classList.add('starContainer');
@@ -101,7 +107,7 @@ const createElement = async (requestURL) => {
         cBtn.classList.add('commentBtn');
         cBtn.textContent = 'Comments';
         starContainer.append(starRate, starCount, starBorder);
-        div.append(divImg, starContainer, h1, cBtn);
+        div.append(divImg, starContainer, h1, h2, details, cBtn);
         cards.append(div);
         searchCount += 1;
         searchResults.textContent = `Search Results (${searchCount})`;
