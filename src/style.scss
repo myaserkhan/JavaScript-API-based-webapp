@@ -8,6 +8,13 @@
  margin-right: $size;
 }
 
+@mixin popup-inputs {
+ padding: 0.6em 0.8em;
+ color: $color-grey;
+ border: none;
+ border-radius: 3px;
+}
+
 // Template
 $color-black: black;
 $color-grey: #121212;
@@ -137,7 +144,7 @@ header {
  @include margin-sides(auto);
 
  z-index: 1;
-//  overflow-y: scroll;
+ // overflow-y: scroll;
 
  .cardItem {
  margin-bottom: 2rem;
@@ -253,9 +260,10 @@ header {
  position: absolute;
  left: auto;
  background-color: $color-grey-light1;
- max-width: 80vw;
- padding: 2rem 3rem 3rem 3rem;
+ max-width: min(80vw, 800px);
+ padding: 1rem 1.5rem 1.5rem 1.5rem;
  border-radius: 1rem;
+ box-shadow: 0 0 20px rgba(black, 0.3);
  font-size: 0.8rem;
 
  .popup-close-container {
@@ -273,6 +281,18 @@ header {
 
  h2 {
  font-size: 1.5rem;
+ font-weight: 500;
+ }
+
+ h3 {
+ margin: 0;
+ padding: 0;
+ font-size: 1rem;
+ font-weight: 500;
+ }
+
+ h4 {
+ font-size: 0.9rem;
  font-weight: 500;
  }
 
@@ -300,6 +320,7 @@ header {
 
  .genres {
  gap: 8px;
+ flex-wrap: wrap;
  margin-bottom: 15px;
  }
 
@@ -307,6 +328,75 @@ header {
  border: 2px solid $color-white-dark;
  border-radius: 20px;
  padding: 0.5em 0.7em;
+ }
+
+ hr {
+ width: 100%;
+ margin: 30px 0 20px 0;
+ border: 1px solid $color-grey-light2;
+ }
+
+ .comments-container {
+ gap: 25px;
+
+ .comments-current {
+ gap: 15px;
+ }
+
+ .comments-add {
+ gap: 15px;
+ width: 100%;
+ max-width: 100%;
+ 
+ form {
+ gap: 12px;
+ width: 100%;
+ 
+ input {
+ @include popup-inputs();
+ }
+ 
+ textarea {
+ @include popup-inputs();
+ min-width: 100%;
+ max-width: 100%;
+ min-height: 50px;
+ max-height: 200px;
+ }
+
+ button {
+ width: fit-content;
+ border: none;
+ border-radius: 3px;
+ background-color: $color-yellow;
+ color: $color-grey;
+ font-weight: 600;
+ margin-top: 5px;
+ }
+ }
+ }
+
+ .comments-all {
+ gap: 10px;
+
+ .comment-instance {
+ border: 1px solid $color-grey-light2;
+ border-radius: 3px;
+ padding: 0.9em 1.5em;
+
+ .comment-name {
+ }
+ 
+ .comment-date {
+ font-size: 0.6rem;
+ color: $color-white-dark;
+ }
+ 
+ .comment-content {
+ margin-top: 5px;
+ }
+ }
+ }
  }
 }
 
@@ -389,6 +479,16 @@ footer {
  .starCount {
  width: 10%;
  }
+ }
+ }
+
+ // Popup
+ .popup-container {
+ padding: 2rem 3rem 3rem 3rem;
+
+ form {
+ width: 90%;
+ max-width: min(90%, 500px);
  }
  }
 }

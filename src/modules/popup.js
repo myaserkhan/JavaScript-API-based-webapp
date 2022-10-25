@@ -17,16 +17,20 @@ const updateComments = async (_id, _container) => {
 
  // Add comments section to the container
  _container.innerHTML = `
- <div class="comments-current">
- <h3>Comments (${comments.length})</h3>
- <div class="comments-all"></div>
+ <div class="comments-current flex-column">
+ <h3>Reviews (${comments.length})</h3>
+ <div class="comments-all flex-column"></div>
  </div>
- <div class="comments-add">
- <h3>Add a comment</h3>
- <form class="form-add-comment" action="">
- <input class="input-comment-name" type="text" placeholder="Your name">
- <input class="input-comment-insight" type="text" placeholder="Your insights">
- <button type="submit">Comment</button>
+ <div class="comments-add flex-column">
+ <h3>Add a review</h3>
+ <form class="form-add-comment flex-column" action="">
+ <input class="input-comment-name" type="text" placeholder="Your name" required>
+ <textarea
+ class="input-comment-insight"
+ placeholder="Your insights"
+ rows="6"
+ required></textarea>
+ <button type="submit">Submit</button>
  </form>
  </div>`;
 
@@ -35,9 +39,11 @@ const updateComments = async (_id, _container) => {
  if (comments) {
  comments.forEach((comment) => {
  commentsAll.innerHTML += `
- <span>${comment.creation_date}</span>
- <span>${comment.username}:</span>
- <span>${comment.comment}</span>`;
+ <div class="comment-instance flex-column">
+ <h4 class="comment-name">${comment.username}</h4>
+ <span class="comment-date">${comment.creation_date}</span>
+ <p class="comment-content">${comment.comment}</p>
+ </div>`;
  });
  }
 
@@ -84,7 +90,8 @@ const showPopup = (_showData, _domRect) => {
  <img class="popup-img" src="${_showData.image.original}" alt="show thumbnail">
  <div class="genres flex-row"></div>
  <div>${_showData.summary}</div>
- <div class="comments-container"></div>`;
+ <hr>
+ <div class="comments-container flex-column"></div>`;
 
  // Generate genres
  const genres = document.querySelector('.genres');
