@@ -94,6 +94,22 @@ header {
   }
 }
 
+footer {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  background-color: $color-grey-light1;
+  background-image: url('./assets/bg_texture.png');
+
+  a {
+    margin-left: 1rem;
+    color: $color-yellow;
+  }
+}
+
 // Desktop Version
 @media screen and (min-width: 768px) {
   header {
