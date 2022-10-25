@@ -34,8 +34,8 @@ const updateComments = async (_id, _container) => {
  <button type="submit">Submit</button>
  </form>
  </div>`;
- _container.innerHTML = '';
- _container.appendChild(newContent)
+  _container.innerHTML = '';
+  _container.appendChild(newContent);
 
   // Generate current comments
   const commentsAll = document.querySelector('.comments-all');
@@ -61,7 +61,6 @@ const updateComments = async (_id, _container) => {
 
     form.reset();
     setTimeout(() => updateComments(_id, _container), 1000);
-
   };
 };
 
