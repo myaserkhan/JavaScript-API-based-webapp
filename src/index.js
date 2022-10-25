@@ -34,7 +34,7 @@ if (window.innerWidth > 768) {
 }
 
 // Get Data from TVMAZE API
-const rootUrl = 'https://api.tvmaze.com/search/shows?q=';
+const rootUrl = 'https://api.tvmaze.com/singlesearch/shows?q=';
 const searchResults = document.querySelector('h2');
 let query = '';
 
@@ -57,15 +57,16 @@ const createElement = async (requestURL) => {
   await getData(requestURL)
     .then((data) => {
       let searchCount = 0;
-      data.forEach((el) => {
+      const dataArray = data._embedded.episodes;
+      dataArray.forEach((el) => {
         const div = document.createElement('div');
         div.classList.add('cardItem');
         const divImg = document.createElement('div');
         divImg.classList.add('cardImg');
-        divImg.style.backgroundImage = `url(${el.show.image.original})`;
+        divImg.style.backgroundImage = `url(${el.image.original})`;
         const h1 = document.createElement('h1');
         h1.classList.add('cardName');
-        h1.textContent = el.show.name;
+        h1.textContent = el.name;
 
         const starContainer = document.createElement('div');
         starContainer.classList.add('starContainer');
@@ -78,7 +79,7 @@ const createElement = async (requestURL) => {
 
         const starCount = document.createElement('span');
         starCount.classList.add('starCount');
-        starCount.setAttribute('id', el.show.id);
+        starCount.setAttribute('id', el.id);
         starCount.textContent = '0';
 
         const starBorder = document.createElement('span');
@@ -86,7 +87,7 @@ const createElement = async (requestURL) => {
         starBorder.classList.add('icons');
         starBorder.classList.add('starBorder');
         starBorder.textContent = 'star_border';
-        starBorder.setAttribute('id', el.show.id);
+        starBorder.setAttribute('id', el.id);
 
         // Like Event
         starBorder.addEventListener('click', () => {
@@ -130,7 +131,7 @@ if (window.innerWidth < 768) {
       query = searchInput.value;
       searchInput.value = '';
       searchBarContainer.classList.add('hide');
-      createElement(`${rootUrl}${query}`);
+      createElement(`${rootUrl}${query}&embed=episodes`);
       updateLikes();
     }
   });
@@ -147,7 +148,7 @@ if (window.innerWidth > 768) {
     if (!searchInput.value) {
       window.onload();
     }
-    createElement(`${rootUrl}${query}`);
+    createElement(`${rootUrl}${query}&embed=episodes`);
     updateLikes();
   };
 }
@@ -161,7 +162,7 @@ if (window.innerWidth > 768) {
       }
       query = searchInput.value;
       searchInput.value = '';
-      createElement(`${rootUrl}${query}`);
+      createElement(`${rootUrl}${query}&embed=episodes`);
       updateLikes();
     }
   });

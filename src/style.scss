@@ -149,8 +149,7 @@ header {
       background-repeat: no-repeat;
 
       &:hover {
-        transition: opacity 0.15s;
-        filter: grayscale(20%);
+        box-shadow: 0 0 30px black inset;
       }
     }
 
@@ -254,6 +253,17 @@ footer {
     h2 {
       font-size: 1rem;
       margin-left: auto;
+    }
+  }
+
+  h3 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    color: $color-white;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
