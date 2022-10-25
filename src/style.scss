@@ -2,6 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+// Mix-ins
+@mixin margin-sides($size) {
+  margin-left: $size;
+  margin-right: $size;
+}
+
 // Template
 $color-black: black;
 $color-grey: #121212;
@@ -22,6 +28,10 @@ $color-white: white;
   color: white;
   list-style: none;
   text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -53,6 +63,17 @@ header {
   padding: 0.5rem;
   background-color: $color-grey;
   background-image: url('./assets/bg_texture.png');
+
+  h1 {
+    font-size: 1rem;
+    color: $color-yellow;
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 0.75rem;
+    margin-left: auto;
+  }
 
   button {
     background-color: transparent;
@@ -89,7 +110,110 @@ header {
     color: $color-yellow;
 
     &::placeholder {
+      font-style: italic;
       color: $color-white;
+    }
+  }
+}
+
+// Cards Section
+.cards {
+  margin-top: 1rem;
+  padding-bottom: 4rem;
+  display: grid;
+  grid-template-columns: auto;
+  place-items: center;
+
+  @include margin-sides(auto);
+
+  z-index: 1;
+  overflow-y: scroll;
+
+  .cardItem {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: $color-grey-light1;
+    width: 300px;
+    height: 600px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+
+    .cardImg {
+      border: 4px solid $color-grey-light2;
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      &:hover {
+        transition: opacity 0.15s;
+        filter: grayscale(20%);
+      }
+    }
+
+    .cardName {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: $color-white;
+      height: 50px;
+      text-align: center;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: crosshair;
+      }
+    }
+
+    .starContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+      width: 80%;
+    }
+
+    .starRate {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+      color: $color-yellow;
+    }
+
+    .starCount {
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 1rem;
+      color: $color-white;
+      width: 10%;
+      text-align: center;
+      margin-right: auto;
+    }
+
+    .starBorder {
+      color: $color-blue;
+      cursor: pointer;
+      margin-right: auto;
+
+      &:hover {
+        background-color: $color-grey-light2;
+      }
+    }
+
+    .liked {
+      color: $color-yellow;
+    }
+
+    .commentBtn {
+      @include margin-sides(auto);
+
+      border-radius: 1rem;
+      background-color: $color-grey-light1;
+      color: $color-blue;
+      width: 40%;
+      outline: 1px solid $color-grey;
     }
   }
 }
@@ -122,8 +246,14 @@ footer {
       margin-left: 2rem;
     }
 
-    .logo {
+    h1 {
+      font-size: 2rem;
       margin-left: 2rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-left: auto;
     }
   }
 
@@ -141,5 +271,20 @@ footer {
 
   .searchIconDesktopBtn {
     margin: 0 4rem 0 0;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+
+    .cardItem {
+      .cardName {
+        height: 75px;
+      }
+
+      .starCount {
+        width: 10%;
+      }
+    }
   }
 }
