@@ -57,7 +57,7 @@ const createElement = async (requestURL) => {
   await getData(requestURL)
     .then((data) => {
       let searchCount = 0;
-      const dataArray = data._embedded.episodes;
+      const dataArray = data.embedded.episodes;
       dataArray.forEach((el) => {
         const div = document.createElement('div');
         div.classList.add('cardItem');
