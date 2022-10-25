@@ -114,21 +114,27 @@ const searchInput = document.querySelector('#search-input');
 searchIcon.onclick = () => {
   searchBarContainer.classList.remove('hide');
 
-  // Add event listener
+  // // Add event listener
   searchCloseBtn.onclick = () => {
     searchBarContainer.classList.add('hide');
   };
-
-  if (searchInput.value) {
-    query = searchInput.value;
-    searchInput.value = '';
-  }
-  if (!searchInput.value) {
-    window.onload();
-  }
-  createElement(`${rootUrl}${query}`);
-  updateLikes();
 };
+
+// Enter Keyboard Support - Search Mobile
+if (window.innerWidth < 768) {
+  window.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      if (!searchInput.value) {
+        window.onload();
+      }
+      query = searchInput.value;
+      searchInput.value = '';
+      searchBarContainer.classList.add('hide');
+      createElement(`${rootUrl}${query}`);
+      updateLikes();
+    }
+  });
+}
 
 // Search Event - Desktop Version
 if (window.innerWidth > 768) {
@@ -146,18 +152,20 @@ if (window.innerWidth > 768) {
   };
 }
 
-// Enter Keyboard Support - Search
-window.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    query = searchInput.value;
-    searchInput.value = '';
-    createElement(`${rootUrl}${query}`);
-    updateLikes();
-  }
-  if (!searchInput.value) {
-    window.onload();
-  }
-});
+// Enter Keyboard Support - Search Desktop
+if (window.innerWidth > 768) {
+  window.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      if (!searchInput.value) {
+        window.onload();
+      }
+      query = searchInput.value;
+      searchInput.value = '';
+      createElement(`${rootUrl}${query}`);
+      updateLikes();
+    }
+  });
+}
 
 // Default Search On Page Load
 const createElementForShows = async (requestURL) => {
