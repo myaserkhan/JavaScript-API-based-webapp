@@ -24,3 +24,9 @@ header {
 .icons {
   font-family: 'Material Icons', sans-serif;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+}
