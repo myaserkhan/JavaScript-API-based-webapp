@@ -2,19 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-// Mix-ins
-@mixin margin-sides($size) {
-  margin-left: $size;
-  margin-right: $size;
-}
-
-@mixin popup-inputs {
-  padding: 0.6em 0.8em;
-  color: $color-grey;
-  border: none;
-  border-radius: 3px;
-}
-
 // Template
 $color-black: black;
 $color-grey: #121212;
@@ -140,9 +127,8 @@ header {
   display: grid;
   grid-template-columns: auto;
   place-items: center;
-
-  @include margin-sides(auto);
-
+  margin-left: auto;
+  margin-right: auto;
   z-index: 1;
   // overflow-y: scroll;
 
@@ -243,8 +229,8 @@ header {
     }
 
     .commentBtn {
-      @include margin-sides(auto);
-
+      margin-left: auto;
+      margin-right: auto;
       margin-bottom: 1rem;
       border-radius: 1rem;
       background-color: $color-grey-light1;
@@ -343,7 +329,7 @@ header {
   }
 
   .comments-container {
-    > div {
+    >div {
       display: flex;
       flex-direction: column;
       gap: 25px;
@@ -363,12 +349,17 @@ header {
         width: 100%;
 
         input {
-          @include popup-inputs();
+          padding: 0.6em 0.8em;
+          color: $color-grey;
+          border: none;
+          border-radius: 3px;
         }
 
         textarea {
-          @include popup-inputs();
-
+          padding: 0.6em 0.8em;
+          color: $color-grey;
+          border: none;
+          border-radius: 3px;
           min-width: 100%;
           max-width: 100%;
           min-height: 50px;
