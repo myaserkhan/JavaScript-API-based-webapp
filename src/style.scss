@@ -10,6 +10,7 @@ $color-grey-light2: #2c2c2c;
 $color-yellow: #f5c518;
 $color-blue: #5799ef;
 $color-white: white;
+$color-white-dark: #aeaeae;
 
 // Global
 *,
@@ -30,7 +31,6 @@ html {
 
 body {
   background-color: $color-black;
-  box-sizing: inherit;
 }
 
 button {
@@ -45,6 +45,16 @@ button {
 
 .hide {
   display: none !important;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 // Header
@@ -120,7 +130,7 @@ header {
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
-  overflow-y: scroll;
+  // overflow-y: scroll;
 
   .cardItem {
     margin-bottom: 2rem;
@@ -231,6 +241,165 @@ header {
   }
 }
 
+// Popup
+.popup-container {
+  position: absolute;
+  left: auto;
+  background-color: $color-grey-light1;
+  max-width: calc(min(80vw, 800px));
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+
+  .popup-close-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .popup-close {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .sub-title {
+    gap: 0.4em;
+
+    .icons {
+      font-size: 0.8rem;
+      color: $color-yellow;
+    }
+
+    .rating {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-left: 3px;
+    }
+  }
+
+  .popup-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin: 10px 0;
+  }
+
+  .genres {
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  .tag-genre {
+    border: 2px solid $color-white-dark;
+    border-radius: 20px;
+    padding: 0.5em 0.7em;
+  }
+
+  .summary {
+    p:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  hr {
+    width: 100%;
+    margin: 30px 0 20px 0;
+    border: 1px solid $color-grey-light2;
+  }
+
+  .comments-container {
+    >div {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .comments-current {
+      gap: 15px;
+    }
+
+    .comments-add {
+      gap: 15px;
+      width: 100%;
+      max-width: 100%;
+
+      form {
+        gap: 12px;
+        width: 100%;
+
+        input {
+          padding: 0.6em 0.8em;
+          color: $color-grey;
+          border: none;
+          border-radius: 3px;
+        }
+
+        textarea {
+          padding: 0.6em 0.8em;
+          color: $color-grey;
+          border: none;
+          border-radius: 3px;
+          min-width: 100%;
+          max-width: 100%;
+          min-height: 50px;
+          max-height: 200px;
+        }
+
+        button {
+          width: fit-content;
+          border: none;
+          border-radius: 3px;
+          background-color: $color-yellow;
+          color: $color-grey;
+          font-weight: 600;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .comments-all {
+      gap: 10px;
+
+      .comment-instance {
+        border: 1px solid $color-grey-light2;
+        border-radius: 3px;
+        padding: 0.9em 1.5em;
+
+        .comment-date {
+          font-size: 0.6rem;
+          color: $color-white-dark;
+        }
+
+        .comment-content {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+// Footer
 footer {
   display: block;
   width: 100%;
@@ -309,6 +478,16 @@ footer {
       .starCount {
         width: 10%;
       }
+    }
+  }
+
+  // Popup
+  .popup-container {
+    padding: 2rem 3rem 3rem 3rem;
+
+    form {
+      width: 90%;
+      max-width: calc(min(90%, 500px));
     }
   }
 }
