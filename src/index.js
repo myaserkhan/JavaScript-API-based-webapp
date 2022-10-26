@@ -62,6 +62,7 @@ const createElement = async (requestURL) => {
   await getData(requestURL)
     .then((data) => {
       let searchCount = 0;
+      // eslint-disable-next-line no-underscore-dangle
       const dataArray = data._embedded.episodes;
       dataArray.forEach((el) => {
         const div = document.createElement('div');
@@ -219,7 +220,7 @@ const createElementForShows = async (requestURL) => {
 
         // Like Event
         starBorder.addEventListener('click', () => {
-          postLike(el.id);
+          postLike(el.show.id);
           starBorder.classList.toggle('liked');
           starCount.setAttribute('disabled', true);
           setTimeout(updateLikes, 1000);
