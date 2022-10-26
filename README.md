@@ -2,7 +2,7 @@
 
 # JavaScript-API-based-webapp
 
-> Description the project.
+> This is a web application based on an external API. The external API provides data about TV shows. 
 
 
 ## Built With
@@ -12,7 +12,7 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://myaserkhan.github.io/JavaScript-API-based-webapp/)
 
 
 ## Getting Started
