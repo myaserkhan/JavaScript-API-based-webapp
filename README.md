@@ -12,8 +12,11 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://myaserkhan.github.io/JavaScript-API-based-webapp/)
+[Live Demo Link](https://myaserkhan.github.io/JavaScript-API-based-webapp/dist)
 
+## Project Documentation 📄
+
+[Presentation video link](https://myaserkhan.github.io/JavaScript-API-based-webapp/dist)
 
 ## Getting Started
 
