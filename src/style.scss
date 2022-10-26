@@ -67,6 +67,7 @@ header {
   padding: 0.5rem;
   background-color: $color-grey;
   background-image: url('./assets/bg_texture.png');
+  z-index: 100;
 
   h1 {
     font-size: 1.25rem;
@@ -430,6 +431,7 @@ footer {
 
     button {
       margin-left: 2rem;
+      border-radius: 4px;
     }
 
     h1 {
@@ -444,7 +446,6 @@ footer {
   }
 
   h3 {
-    margin-top: 1rem;
     font-size: 1.5rem;
     margin-left: 2rem;
     color: $color-white;
