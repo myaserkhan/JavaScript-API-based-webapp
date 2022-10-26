@@ -220,7 +220,7 @@ const createElementForShows = async (requestURL) => {
 
         // Like Event
         starBorder.addEventListener('click', () => {
-          postLike(el.show.id);
+          postLike(el.id);
           starBorder.classList.toggle('liked');
           starCount.setAttribute('disabled', true);
           setTimeout(updateLikes, 1000);
