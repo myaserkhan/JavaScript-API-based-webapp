@@ -1,7 +1,7 @@
 import './style.scss';
 import getData from './modules/tvmaze.js';
 import { getLikes, postLike } from './modules/involvement.js';
-import { showPopup, clearPopups } from './modules/popup.js';
+import { showPopup, clearPopups, showPopupEpisodes } from './modules/popup.js';
 
 // Search button
 const searchIcon = document.querySelector('#search-btn');
@@ -12,8 +12,15 @@ const header = document.querySelector('header');
 const searchInput = document.querySelector('#search-input');
 
 // Search Bar For Desktop
+const isDesktop = window.innerWidth > 768;
 window.onresize = () => {
-  window.location.reload();
+  if (isDesktop && window.innerWidth <= 768) {
+    window.location.reload();
+  }
+
+  if (!isDesktop && window.innerWidth > 768) {
+    window.location.reload();
+  }
 };
 
 if (window.innerWidth > 768) {
@@ -103,7 +110,7 @@ const createElement = async (requestURL) => {
 
         // Like Event
         starBorder.addEventListener('click', () => {
-          postLike(el.show.id);
+          postLike(el.id);
           starBorder.classList.toggle('liked');
           starCount.setAttribute('disabled', true);
           setTimeout(updateLikes, 1000);
@@ -117,6 +124,14 @@ const createElement = async (requestURL) => {
         cards.append(div);
         searchCount += 1;
         searchResults.textContent = `Search Results (${searchCount})`;
+
+        // Pop-up trigger event
+        const showData = el;
+        div.addEventListener('click', (e) => {
+          if (!e.target.matches('.starBorder')) {
+            showPopupEpisodes(showData, e.target.closest('.cardItem').getBoundingClientRect());
+          }
+        });
       });
     });
 };
@@ -263,5 +278,40 @@ h1.addEventListener('click', () => {
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.cardItem') && !e.target.closest('.popup-container')) {
     clearPopups();
+  }
+});
+
+// Mobile Menu Popup
+const dropdownMenuContainer = document.querySelector('#dropdown-menu-container');
+menuIcon.onclick = () => {
+  dropdownMenuContainer.innerHTML = '';
+
+  const mobileMenu = document.createElement('div');
+  mobileMenu.classList.add('mobileMenu');
+  mobileMenu.style.display = 'block';
+
+  const mobileMenuContainer = document.createElement('div');
+  mobileMenuContainer.classList.add('mobileMenuContainer');
+
+  const cancel = document.createElement('span');
+  cancel.classList.add('material-icons-round', 'icons', 'cancel');
+  cancel.textContent = 'cancel';
+  cancel.onclick = () => {
+    mobileMenu.style.display = 'none';
+  };
+  const ul = document.createElement('ul');
+  ul.classList.add('list');
+  ul.innerHTML = '<li><a href="https://myaserkhan.github.io/JavaScript-API-based-webapp/dist/">Home</a></li><li><a href="https://www.tvmaze.com/api">TvMaze API</a></li><li><a href="https://www.notion.so/microverse/Involvement-API-869e60b5ad104603aa6db59e08150270">Involvement API</a></li><li></li>';
+
+  mobileMenuContainer.append(cancel, ul);
+  mobileMenu.append(mobileMenuContainer);
+  dropdownMenuContainer.append(mobileMenu);
+};
+
+// If clicked outside, close the dropdown menu
+document.addEventListener('click', (e) => {
+  const mobileMenu = document.querySelector('.mobileMenu');
+  if (mobileMenu && !e.target.closest('#menu-icon') && !e.target.closest('.mobileMenu')) {
+    mobileMenu.style.display = 'none';
   }
 });
