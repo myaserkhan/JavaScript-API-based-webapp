@@ -1,9 +1,22 @@
-const countObj = (_dataArray) => {
-  const count = [];
-  for (let i = 0; i < _dataArray.length; i += 1) {
-    count.push(_dataArray[i]);
-  }
-  return count.length;
+const likesCount = (likes) => {
+  const likesSymbol = document.querySelector('.like-symbol');
+  likesSymbol.addEventListener('click', () => {
+    likes += 1;
+  });
+  likesSymbol.click();
+  return likes;
 };
 
-export default countObj;
+const commentsCount = (preComments, newComment) => {
+  const comment = document.querySelector('.comment');
+  let totalComments = preComments;
+  comment.addEventListener('click', () => {
+    totalComments = preComments.push(newComment);
+  });
+  comment.click();
+  return totalComments;
+};
+
+const showsCount = (shows) => shows.length;
+
+export { likesCount, commentsCount, showsCount };
